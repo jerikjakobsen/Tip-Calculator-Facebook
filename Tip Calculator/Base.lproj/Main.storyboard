@@ -27,14 +27,14 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Split Bill For 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dkh-hB-8Mj">
-                                        <rect key="frame" x="31" y="167" width="204" height="66"/>
+                                        <rect key="frame" x="31" y="188" width="204" height="66"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="LaoSangamMN" family="Lao Sangam MN" pointSize="30"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="$ 0.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TPH-ir-KdV">
-                                        <rect key="frame" x="221" y="167" width="162" height="66"/>
+                                        <rect key="frame" x="221" y="188" width="162" height="66"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="LaoSangamMN" family="Lao Sangam MN" pointSize="30"/>
                                         <nil key="textColor"/>
@@ -46,15 +46,18 @@
                                         <color key="backgroundColor" systemColor="separatorColor"/>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Change Party Amount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aZm-Sm-rOR">
-                                        <rect key="frame" x="31" y="224" width="204" height="66"/>
+                                        <rect key="frame" x="31" y="326" width="204" height="66"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="LaoSangamMN" family="Lao Sangam MN" pointSize="20"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="zXM-Ux-sSf">
-                                        <rect key="frame" x="255" y="241" width="94" height="32"/>
+                                    <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" continuous="NO" autorepeat="NO" value="1" minimumValue="1" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="zXM-Ux-sSf">
+                                        <rect key="frame" x="255" y="343" width="94" height="32"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <connections>
+                                            <action selector="partyAmountStepperChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="Ez0-kS-hJU"/>
+                                        </connections>
                                     </stepper>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -124,7 +127,7 @@
                         </connections>
                     </view>
                     <navigationItem key="navigationItem" title="Tipculator" id="QId-pP-tbP">
-                        <barButtonItem key="rightBarButtonItem" title="Item" id="eua-M4-c1X">
+                        <barButtonItem key="rightBarButtonItem" title="Settings" id="eua-M4-c1X">
                             <connections>
                                 <segue destination="S9j-fW-CqT" kind="show" id="eJq-bu-80H"/>
                             </connections>
@@ -132,7 +135,11 @@
                     </navigationItem>
                     <connections>
                         <outlet property="billField" destination="wcK-uB-EL3" id="61C-e0-Wz0"/>
+                        <outlet property="changePartyAmountLabel" destination="aZm-Sm-rOR" id="zEy-zC-C1z"/>
+                        <outlet property="partyAmountStepper" destination="zXM-Ux-sSf" id="gc0-KG-Ubv"/>
                         <outlet property="showBillSplitBarView" destination="UsD-64-hET" id="J4K-fu-ga9"/>
+                        <outlet property="splitBillAmount" destination="TPH-ir-KdV" id="gsv-nV-0Ky"/>
+                        <outlet property="splitBillForLabel" destination="dkh-hB-8Mj" id="LMb-Ya-t1c"/>
                         <outlet property="tipAmountLabel" destination="goG-Yi-a1a" id="1GO-Yf-tYt"/>
                         <outlet property="tipLabelView" destination="fIa-TP-zYl" id="4aC-ZC-reE"/>
                         <outlet property="tipPercentageLabel" destination="rP9-q2-0bc" id="AO2-Gj-wGt"/>
@@ -220,6 +227,9 @@
                                     <segment title="Light"/>
                                     <segment title="Dark"/>
                                 </segments>
+                                <connections>
+                                    <action selector="onThemeChange:" destination="S9j-fW-CqT" eventType="valueChanged" id="4xV-g5-qVK"/>
+                                </connections>
                             </segmentedControl>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Yed-7r-x7z"/>

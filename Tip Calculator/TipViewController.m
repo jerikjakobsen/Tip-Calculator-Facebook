@@ -17,6 +17,10 @@
 @property (weak, nonatomic) IBOutlet UIView *totalAmountView;
 @property (weak, nonatomic) IBOutlet UIView *tipLabelView;
 @property (weak, nonatomic) IBOutlet UIView *showBillSplitBarView;
+@property (weak, nonatomic) IBOutlet UIStepper *partyAmountStepper;
+@property (weak, nonatomic) IBOutlet UILabel *splitBillForLabel;
+@property (weak, nonatomic) IBOutlet UILabel *splitBillAmount;
+@property (weak, nonatomic) IBOutlet UILabel *changePartyAmountLabel;
 @property bool isShowingSplitBill;
 
 @end
@@ -29,6 +33,11 @@
     self.showBillSplitBarView.layer.cornerRadius = 6;
     
 }
+
+- (void) viewWillAppear:(BOOL)animated {
+    [self loadSettings];
+}
+
 - (IBAction)onTapView:(id)sender {
     NSLog(@"Hello World");
     [self showTipLabels];
@@ -40,6 +49,7 @@
     double totalBill = bill + bill * ((int) self.tipSlider.value)/100;
     self.tipAmountLabel.text = [NSString stringWithFormat:@"$ %.2f", bill * ((int) self.tipSlider.value)/100];
     self.totalAmountLabel.text = [NSString stringWithFormat: @"$ %.2f", totalBill];
+    self.splitBillAmount.text = [NSString stringWithFormat:@"$ %.2f", totalBill/ (int) self.partyAmountStepper.value];
     
     
 }
@@ -95,6 +105,10 @@
     // Pass the selected object to the new view controller.
 }
 */
+- (IBAction)partyAmountStepperChanged:(id)sender {
+    [self updateLabels: sender];
+    self.splitBillForLabel.text = [NSString stringWithFormat: @"Split Bill For %d", (int) self.partyAmountStepper.value];
+}
 - (void) showSplitBillOption {
     [self hideTipLabels];
 }
@@ -108,5 +122,37 @@
 }
 - (IBAction)onSplitBillSwipeDown:(id)sender {
     [self hideSplitBillOption];
+}
+
+- (void) loadSettings {
+    if ([[[NSUserDefaults.standardUserDefaults dictionaryRepresentation] allKeys] containsObject:@"theme"]) {
+        if ([[NSUserDefaults standardUserDefaults] integerForKey: @"theme"]) {
+            [self setThemeToDark];
+        } else [self setThemeToLight];
+    }
+    
+    if ([[[NSUserDefaults.standardUserDefaults dictionaryRepresentation] allKeys] containsObject:@"defaultTip"]) {
+        self.tipSlider.value = [[NSUserDefaults standardUserDefaults] integerForKey:@"defaultTip"];
+        [self sliderChanged: (id) nil];
+
+    }
+}
+
+- (void) setThemeToDark {
+    self.totalAmountView.backgroundColor = UIColor.darkGrayColor;
+    self.showBillSplitBarView.backgroundColor = UIColor.whiteColor;
+    self.totalAmountLabel.textColor = UIColor.whiteColor;
+    self.splitBillAmount.textColor = UIColor.whiteColor;
+    self.splitBillForLabel.textColor = UIColor.whiteColor;
+    self.changePartyAmountLabel.textColor = UIColor.whiteColor;
+}
+
+- (void) setThemeToLight {
+    self.totalAmountView.backgroundColor = UIColor.whiteColor;
+    self.showBillSplitBarView.backgroundColor = UIColor.darkGrayColor;
+    self.totalAmountLabel.textColor = UIColor.darkGrayColor;
+    self.splitBillAmount.textColor = UIColor.darkGrayColor;
+    self.splitBillForLabel.textColor = UIColor.darkGrayColor;
+    self.changePartyAmountLabel.textColor = UIColor.darkGrayColor;
 }
 @end
