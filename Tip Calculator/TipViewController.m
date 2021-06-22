@@ -16,6 +16,8 @@
 @property (weak, nonatomic) IBOutlet UIView *tipView;
 @property (weak, nonatomic) IBOutlet UIView *totalAmountView;
 @property (weak, nonatomic) IBOutlet UIView *tipLabelView;
+@property (weak, nonatomic) IBOutlet UIView *showBillSplitBarView;
+@property bool isShowingSplitBill;
 
 @end
 
@@ -24,11 +26,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.showBillSplitBarView.layer.cornerRadius = 6;
+    
 }
 - (IBAction)onTapView:(id)sender {
     NSLog(@"Hello World");
     [self showTipLabels];
     [self.view endEditing: true];
+    
 }
 - (IBAction)updateLabels:(id)sender {
     double bill = [self.billField.text doubleValue];
@@ -48,13 +53,13 @@
         CGRect billFrame = self.totalAmountView.frame;
         billFrame.origin.y -= 200;
         CGRect tipLabelsFrame = self.tipView.frame;
-        tipLabelsFrame.origin.y += 500;
-        CGRect billLabelFrame = self.totalAmountLabel.frame;
-        billLabelFrame.origin.y -= 50;
+        tipLabelsFrame.origin.y += 600;
+        //CGRect billLabelFrame = self.totalAmountLabel.frame;
+        //billLabelFrame.origin.y -= 20;
         CGRect tipLabelViewFrame = self.tipLabelView.frame;
         tipLabelViewFrame.origin.y -= 200;
         self.tipLabelView.frame = tipLabelViewFrame;
-        self.totalAmountLabel.frame = billLabelFrame;
+        //self.totalAmountLabel.frame = billLabelFrame;
         self.totalAmountView.frame = billFrame;
         self.tipView.frame = tipLabelsFrame;
         self.totalAmountView.layer.cornerRadius = 20;
@@ -66,13 +71,13 @@
         CGRect billFrame = self.totalAmountView.frame;
         billFrame.origin.y += 200;
         CGRect tipLabelsFrame = self.tipView.frame;
-        tipLabelsFrame.origin.y -= 500;
-        CGRect billLabelFrame = self.totalAmountLabel.frame;
-        billLabelFrame.origin.y += 50;
+        tipLabelsFrame.origin.y -= 600;
+        //CGRect billLabelFrame = self.totalAmountLabel.frame;
+        //billLabelFrame.origin.y += 20;
         CGRect tipLabelViewFrame = self.tipLabelView.frame;
         tipLabelViewFrame.origin.y += 200;
         self.tipLabelView.frame = tipLabelViewFrame;
-        self.totalAmountLabel.frame = billLabelFrame;
+        //self.totalAmountLabel.frame = billLabelFrame;
         self.totalAmountView.frame = billFrame;
         self.tipView.frame = tipLabelsFrame;
         self.totalAmountView.layer.cornerRadius = 0;
@@ -90,5 +95,18 @@
     // Pass the selected object to the new view controller.
 }
 */
+- (void) showSplitBillOption {
+    [self hideTipLabels];
+}
 
+- (void) hideSplitBillOption {
+    [self showTipLabels];
+    
+}
+- (IBAction)onSplitBillSwipeUp:(id)sender {
+    [self showSplitBillOption];
+}
+- (IBAction)onSplitBillSwipeDown:(id)sender {
+    [self hideSplitBillOption];
+}
 @end
