@@ -16,6 +16,7 @@
 		E56F71CE26824C2A00B866C4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E56F71CD26824C2A00B866C4 /* main.m */; };
 		E56F71D826824C2A00B866C4 /* Tip_CalculatorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E56F71D726824C2A00B866C4 /* Tip_CalculatorTests.m */; };
 		E56F71E326824C2A00B866C4 /* Tip_CalculatorUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = E56F71E226824C2A00B866C4 /* Tip_CalculatorUITests.m */; };
+		E56F71F5268270A900B866C4 /* TipViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E56F71F4268270A900B866C4 /* TipViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,8 @@
 		E56F71DE26824C2A00B866C4 /* Tip CalculatorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tip CalculatorUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E56F71E226824C2A00B866C4 /* Tip_CalculatorUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tip_CalculatorUITests.m; sourceTree = "<group>"; };
 		E56F71E426824C2A00B866C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E56F71F3268270A900B866C4 /* TipViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TipViewController.h; sourceTree = "<group>"; };
+		E56F71F4268270A900B866C4 /* TipViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TipViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +114,8 @@
 				E56F71C126824C2900B866C4 /* ViewController.h */,
 				E56F71C226824C2900B866C4 /* ViewController.m */,
 				E56F71C426824C2900B866C4 /* Main.storyboard */,
+				E56F71F3268270A900B866C4 /* TipViewController.h */,
+				E56F71F4268270A900B866C4 /* TipViewController.m */,
 				E56F71C726824C2A00B866C4 /* Assets.xcassets */,
 				E56F71C926824C2A00B866C4 /* LaunchScreen.storyboard */,
 				E56F71CC26824C2A00B866C4 /* Info.plist */,
@@ -266,6 +271,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E56F71F5268270A900B866C4 /* TipViewController.m in Sources */,
 				E56F71C326824C2900B866C4 /* ViewController.m in Sources */,
 				E56F71BD26824C2900B866C4 /* AppDelegate.m in Sources */,
 				E56F71CE26824C2A00B866C4 /* main.m in Sources */,
