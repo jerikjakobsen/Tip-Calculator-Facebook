@@ -13,6 +13,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *tipAmountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *totalAmountLabel;
 @property (weak, nonatomic) IBOutlet UISlider *tipSlider;
+@property (weak, nonatomic) IBOutlet UIView *tipView;
+@property (weak, nonatomic) IBOutlet UIView *totalAmountView;
+@property (weak, nonatomic) IBOutlet UIView *tipLabelView;
 
 @end
 
@@ -21,11 +24,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
 }
 - (IBAction)onTapView:(id)sender {
     NSLog(@"Hello World");
-    
+    [self showTipLabels];
     [self.view endEditing: true];
 }
 - (IBAction)updateLabels:(id)sender {
@@ -41,6 +43,44 @@
     [self updateLabels: (id) sender];
 }
 
+- (void)hideTipLabels {
+    [UIView animateWithDuration: 0.3 animations:^{
+        CGRect billFrame = self.totalAmountView.frame;
+        billFrame.origin.y -= 200;
+        CGRect tipLabelsFrame = self.tipView.frame;
+        tipLabelsFrame.origin.y += 500;
+        CGRect billLabelFrame = self.totalAmountLabel.frame;
+        billLabelFrame.origin.y -= 50;
+        CGRect tipLabelViewFrame = self.tipLabelView.frame;
+        tipLabelViewFrame.origin.y -= 200;
+        self.tipLabelView.frame = tipLabelViewFrame;
+        self.totalAmountLabel.frame = billLabelFrame;
+        self.totalAmountView.frame = billFrame;
+        self.tipView.frame = tipLabelsFrame;
+        self.totalAmountView.layer.cornerRadius = 20;
+    }];
+    
+}
+- (void) showTipLabels {
+    [UIView animateWithDuration: 0.3 animations:^{
+        CGRect billFrame = self.totalAmountView.frame;
+        billFrame.origin.y += 200;
+        CGRect tipLabelsFrame = self.tipView.frame;
+        tipLabelsFrame.origin.y -= 500;
+        CGRect billLabelFrame = self.totalAmountLabel.frame;
+        billLabelFrame.origin.y += 50;
+        CGRect tipLabelViewFrame = self.tipLabelView.frame;
+        tipLabelViewFrame.origin.y += 200;
+        self.tipLabelView.frame = tipLabelViewFrame;
+        self.totalAmountLabel.frame = billLabelFrame;
+        self.totalAmountView.frame = billFrame;
+        self.tipView.frame = tipLabelsFrame;
+        self.totalAmountView.layer.cornerRadius = 0;
+    }];
+}
+- (IBAction)onStartEditing:(id)sender {
+    [self hideTipLabels];
+}
 /*
 #pragma mark - Navigation
 
